@@ -23,10 +23,6 @@ public class SplashScreenActivity extends BaseActivity {
     ViewModelProvider.Factory factory;
     MainViewModel viewModel;
 
-    @Override
-    protected FragmentActivity FragmentActivityId() {
-        return SplashScreenActivity.this;
-    }
 
     @Override
     protected int layoutRes() {

@@ -1,5 +1,10 @@
 <resources>
     <string name="app_name">Android Technical Test</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="string_events">Next 5 events</string>
+    <string name="string_SPANISH">Spanish La Liga</string>
+    <string name="string_ITALIAN">Italian Serie A</string>
+    <string name="string_ENGLISH">English Premier League</string>
+    <string name="string_FRENCH">French Ligue 1</string>
+    <string name="string_GERMAN">German Bundesliga</string>
+
 </resources>

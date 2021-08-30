@@ -30,7 +30,6 @@ public abstract class BaseActivity extends DaggerAppCompatActivity {
     private final int FRENCH = 3;
     private final int GERMAN = 4;
 
-    protected abstract FragmentActivity FragmentActivityId();
 
     @LayoutRes
     protected abstract int layoutRes();
@@ -71,7 +70,7 @@ public abstract class BaseActivity extends DaggerAppCompatActivity {
         }
     }
 
-    @Override
+    /*@Override
     public boolean onPrepareOptionsMenu(Menu menu) {
 
         if (toolbar.getMenu().findItem(SPANISH) == null) {
@@ -91,11 +90,11 @@ public abstract class BaseActivity extends DaggerAppCompatActivity {
         }
 
         return super.onPrepareOptionsMenu(menu);
-    }
+    }*/
 
-    private boolean pressMenuItem = false;
+    //private boolean pressMenuItem = false;
 
-    @Override
+    /*@Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (!pressMenuItem) {
             if (item.getItemId() == SPANISH) {
@@ -126,7 +125,7 @@ public abstract class BaseActivity extends DaggerAppCompatActivity {
             }
         }
         return super.onOptionsItemSelected(item);
-    }
+    } */
 
     @Override
     protected void onResume() {

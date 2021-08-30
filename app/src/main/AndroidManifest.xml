@@ -19,7 +19,17 @@
         <activity
             android:name=".MainDetailActivity"
             android:exported="true"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <action android:name="co.condorlabs.androidtechnicaltest.MainDetailActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+
+        </activity>
         <activity
             android:name=".MainActivity"
             android:exported="true"

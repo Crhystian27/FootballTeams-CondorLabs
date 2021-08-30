@@ -2,6 +2,7 @@ package co.condorlabs.androidtechnicaltest.rest;
 
 import java.util.List;
 
+import co.condorlabs.androidtechnicaltest.data.dto.ResultResponse;
 import co.condorlabs.androidtechnicaltest.data.dto.TeamResponse;
 import co.condorlabs.androidtechnicaltest.data.entity.Result;
 import co.condorlabs.androidtechnicaltest.data.entity.Team;
@@ -15,5 +16,5 @@ public interface ApiService {
     Single<TeamResponse> getTeams(@Query("id") String idLeague);
 
     @GET("api/v1/json/1/eventslast.php")
-    Single<List<Result>> getNextEvent();
+    Single<ResultResponse> getResults(@Query("id") String idTeam);
 }

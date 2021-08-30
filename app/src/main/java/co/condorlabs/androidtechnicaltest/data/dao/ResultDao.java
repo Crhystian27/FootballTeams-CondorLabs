@@ -16,10 +16,13 @@ import co.condorlabs.androidtechnicaltest.data.entity.Result;
 public interface ResultDao {
 
     @Query("SELECT * from result_table WHERE idHomeTeam =:idHomeTeam")
-    LiveData<List<Result>> getIdResult(Integer idHomeTeam);
+    List<Result> getIdResult(String idHomeTeam);
 
     @Query("DELETE FROM result_table")
     void deleteAllResult();
+
+    @Query("SELECT * FROM result_table WHERE idEvent =:idEvent")
+    boolean compareTo(String idEvent);
 
     @Update(entity = Result.class)
     void updateResult(Result result);

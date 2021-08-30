@@ -12,6 +12,7 @@ import javax.inject.Singleton;
 
 import co.condorlabs.androidtechnicaltest.data.dao.ResultDao;
 import co.condorlabs.androidtechnicaltest.data.dao.TeamDao;
+import co.condorlabs.androidtechnicaltest.data.dto.ResultResponse;
 import co.condorlabs.androidtechnicaltest.data.dto.TeamResponse;
 import co.condorlabs.androidtechnicaltest.data.entity.Result;
 import co.condorlabs.androidtechnicaltest.data.entity.Team;
@@ -38,7 +39,21 @@ public class Repository implements RepositoryInterface {
         this.resultDao = resultDao;
     }
 
+    @Override
+    public MutableLiveData<ResultResponse> getResultInternet(String idTeam) {
+        MutableLiveData<ResultResponse> response = new MutableLiveData<>();
+        executor.execute(() -> compositeDisposable.add(apiService.getResults(idTeam)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(response::setValue, throwable -> {
+                            response.setValue(null);
+                            Log.e(throwable.toString(), throwable.getMessage());
+                        }
+                )));
+        return response;
+    }
 
+    @Override
     public MutableLiveData<TeamResponse> getTeamInternet(String idLeague) {
         MutableLiveData<TeamResponse> response = new MutableLiveData<>();
         executor.execute(() -> compositeDisposable.add(apiService.getTeams(idLeague)
@@ -60,8 +75,10 @@ public class Repository implements RepositoryInterface {
             throw new Exception();
         } else {
             executor.execute(() -> {
-                for (int i = 0; i < teamList.size(); i++) {
-                    teamDao.insertAllTeam(teamList.get(i));
+                for (Team team : teamList) {
+                    if (!teamDao.compareTo(team.getIdTeam())) {
+                        teamDao.insertAllTeam(teamList);
+                    }
                 }
             });
 
@@ -69,7 +86,23 @@ public class Repository implements RepositoryInterface {
         return teamList;
     }
 
+    @Override
+    public List<Result> saveResultDB(List<Result> resultList) throws Exception {
+        if (resultList == null || resultList.isEmpty()) {
+            throw new Exception();
+        } else {
+            executor.execute(() -> {
+                for (Result result : resultList) {
+                    if (!resultDao.compareTo(result.getIdEvent())) {
+                        resultDao.insertAllResult(resultList);
+                    }
+                }
+            });
+        }
+        return resultList;
+    }
 
+    @Override
     public MutableLiveData<List<Team>> getTeamDB(String idLeague) {
         MutableLiveData<List<Team>> response = new MutableLiveData<>();
         response.setValue(teamDao.getIdLeague(idLeague));
@@ -77,7 +110,10 @@ public class Repository implements RepositoryInterface {
     }
 
     @Override
-    public List<Result> saveNextEvent(List<Result> resultList) throws Exception {
-        return null;
+    public MutableLiveData<List<Result>> getResultDB(String idTeam) {
+        MutableLiveData<List<Result>> response = new MutableLiveData<>();
+        response.setValue(resultDao.getIdResult(idTeam));
+        return response;
     }
+
 }

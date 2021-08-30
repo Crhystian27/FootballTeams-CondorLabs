@@ -54,7 +54,6 @@ public class MainFragment extends BaseFragment {
                 } else {
                     viewModel.getTeamDB(bundle.getString("league")).observe(getViewLifecycleOwner(), response1 -> {
                         if (response1 != null) {
-                            Log.e(TAG, "Count ->" + response1.size());
                             loadRecyclerView(view, response1);
                         }
                     });

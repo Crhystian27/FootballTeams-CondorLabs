@@ -5,6 +5,9 @@
       <map>
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1675925925925926" />
         <entry key="app/src/main/res/drawable/background0.xml" value="0.26875" />
+        <entry key="app/src/main/res/drawable/background1.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/background2.xml" value="0.28125" />
+        <entry key="app/src/main/res/drawable/ic_back.xml" value="0.26875" />
         <entry key="app/src/main/res/drawable/ic_error.xml" value="0.26875" />
         <entry key="app/src/main/res/drawable/ic_error2.xml" value="0.16944444444444445" />
         <entry key="app/src/main/res/drawable/ic_facebook.xml" value="0.26461538461538464" />
@@ -12,15 +15,20 @@
         <entry key="app/src/main/res/drawable/ic_placeholder.xml" value="0.16944444444444445" />
         <entry key="app/src/main/res/drawable/ic_twitter.xml" value="0.26461538461538464" />
         <entry key="app/src/main/res/drawable/ic_youtube.xml" value="0.26461538461538464" />
+        <entry key="app/src/main/res/drawable/row_background.xml" value="0.19444444444444445" />
         <entry key="app/src/main/res/layout/activity_main_detail.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.225" />
+        <entry key="app/src/main/res/layout/dialog_result.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_detail_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_splash_screen.xml" value="0.23177083333333334" />
         <entry key="app/src/main/res/layout/main_activity.xml" value="0.2358974358974359" />
         <entry key="app/src/main/res/layout/main_fragment.xml" value="0.22" />
         <entry key="app/src/main/res/layout/row_background.xml" value="0.25052083333333336" />
+        <entry key="app/src/main/res/layout/row_result.xml" value="1.0" />
         <entry key="app/src/main/res/layout/row_team.xml" value="0.1" />
         <entry key="app/src/main/res/layout/toolbar_material.xml" value="0.1" />
+        <entry key="app/src/main/res/menu/main.xml" value="0.2526041666666667" />
+        <entry key="app/src/main/res/menu/main_detail.xml" value="0.25052083333333336" />
         <entry key="app/src/main/res/xml/network_security_config.xml" value="0.2526041666666667" />
       </map>
     </option>

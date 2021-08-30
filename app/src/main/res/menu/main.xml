@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/SPANISH"
+        android:enabled="true"
+        android:orderInCategory="1"
+        android:title="@string/string_SPANISH"
+        app:showAsAction="collapseActionView" />
+
+    <item
+        android:id="@+id/ENGLISH"
+        android:enabled="true"
+        android:orderInCategory="1"
+        android:title="@string/string_ENGLISH"
+        app:showAsAction="collapseActionView" />
+
+
+    <item
+        android:id="@+id/ITALIAN"
+        android:enabled="true"
+        android:orderInCategory="1"
+        android:title="@string/string_ITALIAN"
+        app:showAsAction="collapseActionView" />
+
+
+    <item
+        android:id="@+id/FRENCH"
+        android:enabled="true"
+        android:orderInCategory="1"
+        android:title="@string/string_FRENCH"
+        app:showAsAction="collapseActionView" />
+
+
+    <item
+        android:id="@+id/GERMAN"
+        android:enabled="true"
+        android:orderInCategory="1"
+        android:title="@string/string_GERMAN"
+        app:showAsAction="collapseActionView" />
+</menu>
