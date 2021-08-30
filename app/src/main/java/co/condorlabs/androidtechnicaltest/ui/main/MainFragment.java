@@ -1,39 +1,76 @@
 package co.condorlabs.androidtechnicaltest.ui.main;
 
-import androidx.lifecycle.ViewModelProvider;
-
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import java.util.List;
+
+import javax.inject.Inject;
 
 import co.condorlabs.androidtechnicaltest.R;
+import co.condorlabs.androidtechnicaltest.adapter.TeamsAdapter;
+import co.condorlabs.androidtechnicaltest.base.BaseFragment;
+import co.condorlabs.androidtechnicaltest.data.entity.Team;
 
-public class MainFragment extends Fragment {
+public class MainFragment extends BaseFragment {
 
-    private MainViewModel mViewModel;
+    private static final String TAG = ":::MainFragment";
 
-    public static MainFragment newInstance() {
-        return new MainFragment();
-    }
+    @Inject
+    ViewModelProvider.Factory factory;
+    MainViewModel viewModel;
 
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.main_fragment, container, false);
-    }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(MainViewModel.class);
-        // TODO: Use the ViewModel
+    protected int layoutRes() {
+        return R.layout.main_fragment;
     }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        viewModel = new ViewModelProvider(getViewModelStore(), factory).get(MainViewModel.class);
+
+
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+            viewModel.getTeamInternet(bundle.getString("league")).observe(getViewLifecycleOwner(), response0 -> {
+                if (response0 != null) {
+                    loadRecyclerView(view, response0.getTeams());
+                    try {
+                        if (viewModel.saveTeamDB(response0.getTeams())) {
+                            Log.e(TAG, "Saved Team");
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    viewModel.getTeamDB(bundle.getString("league")).observe(getViewLifecycleOwner(), response1 -> {
+                        if (response1 != null) {
+                            Log.e(TAG, "Count ->" + response1.size());
+                            loadRecyclerView(view, response1);
+                        }
+                    });
+                }
+            });
+        }
+    }
+
+    private void loadRecyclerView(View view, List<Team> list) {
+        RecyclerView recyclerView = view.findViewById(R.id.teamRecyclerView);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(activity));
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        TeamsAdapter adapter = new TeamsAdapter(activity, list);
+        recyclerView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+
+    }
 }

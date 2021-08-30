@@ -1,5 +1,6 @@
 package co.condorlabs.androidtechnicaltest.data.dao;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
@@ -9,23 +10,20 @@ import androidx.room.Update;
 import java.util.List;
 
 import co.condorlabs.androidtechnicaltest.data.entity.Result;
-import co.condorlabs.androidtechnicaltest.data.entity.Team;
+
 
 @Dao
-public interface TeamDao {
+public interface ResultDao {
 
-    @Query("SELECT * from team_table WHERE idLeague =:idLeague")
-    List<Team> getIdLeague(String idLeague);
+    @Query("SELECT * from result_table WHERE idHomeTeam =:idHomeTeam")
+    LiveData<List<Result>> getIdResult(Integer idHomeTeam);
 
-    @Query("DELETE FROM team_table")
-    void deleteAllTeam();
-
-    @Query("SELECT * FROM team_table WHERE idTeam =:idTeam")
-    boolean compareTo(String idTeam);
+    @Query("DELETE FROM result_table")
+    void deleteAllResult();
 
     @Update(entity = Result.class)
     void updateResult(Result result);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertAllTeam(Team team);
+    void insertAllResult(List<Result> resultList);
 }

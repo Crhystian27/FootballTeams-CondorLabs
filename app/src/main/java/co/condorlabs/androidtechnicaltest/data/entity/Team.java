@@ -1,14 +1,32 @@
 package co.condorlabs.androidtechnicaltest.data.entity;
 
+import androidx.room.Entity;
+import androidx.room.Index;
+import androidx.room.PrimaryKey;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
+@AllArgsConstructor
+@Entity(tableName = "team_table", indices = {@Index(value = "id", unique = true)})
 public final class Team {
 
+    @PrimaryKey
+    public Integer id;
     public String idTeam;
     public String idSoccerXML;
     public String idAPIfootball;
     public String intLoved;
     public String strTeam;
-    public Object strTeamShort;
+    public String strTeamShort;
     public String strAlternate;
     public String intFormedYear;
     public String strSport;
@@ -25,8 +43,8 @@ public final class Team {
     public String strLeague6;
     public String idLeague6;
     public String strLeague7;
-    public Object idLeague7;
-    public Object strDivision;
+    public String idLeague7;
+    public String strDivision;
     public String strManager;
     public String strStadium;
     public String strKeywords;
@@ -41,7 +59,7 @@ public final class Team {
     public String strInstagram;
     public String strDescriptionEN;
     public String strDescriptionDE;
-    public Object strDescriptionFR;
+    public String strDescriptionFR;
     public String strDescriptionCN;
     public String strDescriptionIT;
     public String strDescriptionJP;
@@ -66,4 +84,5 @@ public final class Team {
     public String strTeamBanner;
     public String strYoutube;
     public String strLocked;
+
 }
